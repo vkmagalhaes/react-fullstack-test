@@ -20,7 +20,7 @@ object Home {
 class BasicSimulation extends Simulation {
 
   val httpConf = http
-    .baseURL("http://localhost:3000")
+    .baseURL("http://new-catalog-test.sa-east-1.elasticbeanstalk.com")
     .acceptHeader("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
     .doNotTrackHeader("1")
     .acceptLanguageHeader("en-US,en;q=0.5")
@@ -30,6 +30,6 @@ class BasicSimulation extends Simulation {
   val scn = scenario("BasicSimulation").exec(Home.browse)
 
   setUp(
-    scn.inject(rampUsers(1000) over (120 seconds))
+    scn.inject(rampUsers(10000) over (100 seconds))
   ).protocols(httpConf)
 }
